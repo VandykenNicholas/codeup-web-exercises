@@ -8,6 +8,13 @@
  * Example
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
+let messageFunction = "";
+function sayHello(name){
+    messageFunction = `Hello, ${name}!`;
+    return messageFunction;
+}
+
+
 
 /**
  * TODO:
@@ -17,12 +24,22 @@
  * console.log 'helloMessage' to check your work
  */
 
+sayHello('Nick');
+let helloMessage = messageFunction;
+console.log(helloMessage);
+
+
 /**
  * TODO:
  * Store your name as a string in a variable named 'myName', and pass that
  * variable to the 'sayHello' function. You should see the same output in the
  * console.
  */
+
+const myName = 'Nick';
+sayHello(myName);
+console.log(helloMessage);
+
 
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
@@ -45,6 +62,20 @@ var random = Math.floor((Math.random() * 3) + 1);
  * different result everytime you refresh the page if you are using the random
  * number)
  */
+let isItTwo = false;
+function isTwo(input){
+   if (input === 2){
+       return isItTwo = true;
+   }
+   else {
+       return isItTwo = false;
+   }
+}
+
+isTwo(random);
+console.log(random);
+console.log(isItTwo);
+
 
 /**
  * TODO:
@@ -57,6 +88,14 @@ var random = Math.floor((Math.random() * 3) + 1);
  * > calculateTip(0.25, 25.50) // returns 6.375
  * > calculateTip(0.15, 33.42) // returns 5.013
  */
+let tipAmount = 0;
+function calculateTip(percentage, total){
+    tipAmount = total * (percentage *.01);
+    return tipAmount;
+}
+calculateTip(20,20);
+console.log(tipAmount);
+
 
 /**
  * TODO:
@@ -64,6 +103,11 @@ var random = Math.floor((Math.random() * 3) + 1);
  * prompt the user for the bill total and a percentage they would like to tip,
  * then display the dollar amount they should tip
  */
+
+let promptTip = prompt(`How much do you want to tip?   "__"%`);
+let promptBill = prompt(`How much was your bill?`);
+calculateTip(promptTip,promptBill);
+alert(`You have to pay $${tipAmount}`);
 
 /**
  * TODO:
@@ -79,3 +123,12 @@ var random = Math.floor((Math.random() * 3) + 1);
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+let newPrice = 0;
+let promptPrice = prompt(`How much is it?`);
+let promptDiscount = prompt(`How much is the discount? in 0 - 1 form`);
+function applyDiscount(price, discount){
+    newPrice = price - (price * discount);
+    return newPrice;
+}
+applyDiscount(promptPrice,promptDiscount);
+alert(`Your new price is ${newPrice}!`);
