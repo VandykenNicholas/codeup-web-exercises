@@ -124,7 +124,7 @@ alert(`You have to pay $${tipAmount}`);
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
 let newPrice = 0;
-let promptPrice = prompt(`How much is it?`);
+let promptPrice = prompt(`How much is the product?`);
 let promptDiscount = prompt(`How much is the discount? in 0 - 1 form`);
 function applyDiscount(price, discount){
     newPrice = price - (price * discount);
