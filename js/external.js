@@ -43,4 +43,27 @@ if (startExecsiseThree === true){
         alert(`Sorry, you can not enroll in the class.......`);
     }
 }
+let startExerciseFour = confirm(`Ready to start the forth exercise?`);
+if (startExerciseFour){
+    let offerValid = confirm(`is the offer still valid? Hit "OK"`);
+    if (offerValid){
+        let isMember = confirm(` If your a member, hit "ok"`);
+        if (isMember){
+            alert(`Lets give you that offer!`);
+        }
+        else {
+            let boughtTwoItems =  confirm(`Are you buying more than 2 items?`);
+            if (boughtTwoItems){
+                alert(`Lets give you that offer!`);
+            }
+            else {
+                alert(`NO OFFER FOR YOU!`);
+            }
+        }
+    }
+    else {
+        alert(`NO OFFER FOR YOU!`);
+    }
+}
+
 
