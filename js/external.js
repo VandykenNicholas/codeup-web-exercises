@@ -10,7 +10,7 @@ if (startExercisesOne === true){
     let movieTwoTime = prompt(`how long have you had brother bear?`)
     let movieThreeTime = prompt(`how long have you had hercules?`)
     let totalMovieMoney = (Number(movieTwoTime) + Number(movieOneTime) + Number(movieThreeTime)) * 3;
-    alert(`You own blockbuster $${totalMovieMoney}, clicking ok tells me that YOU KNOW!`);
+    alert(`You owe blockbuster $${totalMovieMoney}, clicking ok tells me that YOU KNOW!`);
 }
 let startExercisesTwo = confirm(`are you ready for your Second exercise questions?`);
 if (startExercisesTwo === true) {
