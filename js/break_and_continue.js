@@ -16,9 +16,8 @@ function loopSkip(){
 		else if (i%2 ===0){
 			continue;
 		}
-		else {
-			console.log(`here is an odd number: ${i}`);
-		}
+		console.log(`here is an odd number: ${i}`);
+		
 	}
 	
 }
