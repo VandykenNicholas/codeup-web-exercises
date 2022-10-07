@@ -21,31 +21,67 @@
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
  */
-
-// Don't change the next two lines!
-// These lines create two variables for you:
-// - `colors`: a list of the colors of the rainbow
-// - `randomColor`: contains a single random color value from the list (this
-//                  will contain a different color every time the page loads)
-var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-var randomColor = colors[Math.floor(Math.random() * colors.length)];
-/**
- * TODO:
- * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
- * You should see a different message every time you refresh the page
- */
+// let colorChoice = prompt(`what color are you curious about?`)
+// analyzeColor(colorChoice);
+// function analyzeColor(color){
+//     if (color === "blue") {
+//         console.log(`The color of the sky is blue`)
+//     }
+//     else if (color === 'green'){
+//         console.log(`Color of grass is green`)
+//     }
+//     else if (color === `red`){
+//         console.log(`the color of fire is red`)
+//     }
+//     else {
+//         console.log(`NO IDEA WHAT ${color.toUpperCase()} IS!!!!`)
+//     }
+// }
+//
+// // Don't change the next two lines!
+// // These lines create two variables for you:
+// // - `colors`: a list of the colors of the rainbow
+// // - `randomColor`: contains a single random color value from the list (this
+// //                  will contain a different color every time the page loads)
+// var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+// // var randomColor = colors[Math.floor(Math.random() * colors.length)];
+// /**
+//  * TODO:
+//  * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
+//  * You should see a different message every time you refresh the page
+//  */
+//  analyzeColor(randomColor);
 
 /**
  * TODO:
  * Comment out the code above, and refactor your function to use a switch-case statement
  */
 
+function analyzeColor(input){
+    switch(input){
+        case `red`:
+            console.log(`${input} is the color or fire`)
+            break;
+        case `blue`:
+            console.log(`${input} is the color of the sky`)
+            break;
+        case `green`:
+            console.log(`${input} is the color of grass`)
+            break;
+        default:
+            console.log(`${input} isnt a color i can see!`)
+    }
+}
 /**
  * TODO:
  * Prompt the user for a color when the page loads, and pass the input from the
  * user to your `analyzeColor` function. Alert the return value from your
  * function to show it to the user.
  */
+
+// commented for testing
+// analyzeColor(prompt(`what color would you like to know about?`));
+
 
 /* ########################################################################## */
 
@@ -69,6 +105,34 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * return value.
  */
 
+// let luckyNumber = Math.floor((Math.random() * 5) + 1);
+// let totalInput = parseFloat(prompt(`how much is the product?`));
+// function calculateTotal(luck,total){
+//     let discount;
+//     switch (luck){
+//         case 0:
+//             discount = 0;
+//             break;
+//         case 1:
+//             discount = .1;
+//             break;
+//         case 2:
+//             discount = .25;
+//             break;
+//         case 3:
+//             discount = .35;
+//             break;
+//         case 4:
+//             discount = .5;
+//             break;
+//         case 5:
+//             discount = 1;
+//             break;
+//     }
+//     alert(`you will owe $${total - (total * discount)}`);
+// }
+// calculateTotal(luckyNumber,totalInput);
+
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 5.
@@ -77,9 +141,40 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * and alerts to display to the user what their lucky number was, what their
  * price before the discount was, and what their price after the discount is.
  */
+// I LITERALLY DID THIS ON ACCIDENT TO MAKE THE CODE MORE FUN LAST QUESTION// I WILL COMMENT OUT AND CHANGE THE VARIABLES
 // Generate a random number between 0 and 6
-// var luckyNumber = Math.floor(Math.random() * 6);
+var luckyNumber = Math.floor(Math.random() * 6);
+//
 
+let totalInput = parseFloat(prompt(`how much is the product?`));
+function calculateTotal(luck,total){
+    let discount;
+    switch (luck){
+        case 0:
+            discount = 0;
+            break;
+        case 1:
+            discount = .1;
+            break;
+        case 2:
+            discount = .25;
+            break;
+        case 3:
+            discount = .35;
+            break;
+        case 4:
+            discount = .5;
+            break;
+        case 5:
+            discount = 1;
+            break;
+    }
+    alert(`You original bill was ${total}`);
+    alert(`Your lucky number was ${luckyNumber}`)
+    alert(`You discount is  ${discount}`);
+    alert(`you NOW will owe $${total - (total * discount)}. CONGRATULATIONS!!!`);
+}
+calculateTotal(luckyNumber,totalInput);
 /**
  * TODO:
  * Write some JavaScript that uses a `confirm` dialog to ask the user if they
@@ -98,3 +193,30 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+function letsPlayAGame(){
+
+    let letsPlay = confirm(`Would you like to enter a number?`);
+    if (letsPlay){
+        let userNumber = parseFloat(prompt(`Enter your number here`));
+        if (!isNaN(userNumber)){
+            if (Math.abs(userNumber)%2 > 0){
+                alert(`your number was odd`);
+            }
+            else{
+
+                alert(`your number is even`);
+            }
+            alert(`your number plus 100 is ${userNumber + 100}`);
+            (userNumber < 0) ? alert(`your number is negative`) : alert(`your number is positive`);
+
+        }
+        else {
+            alert(`you did not enter a number!`);
+        }
+    }
+    else{
+
+    }
+
+}
+letsPlayAGame();
