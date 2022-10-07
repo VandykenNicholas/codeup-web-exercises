@@ -80,7 +80,7 @@ function analyzeColor(input){
  */
 
 // commented for testing
-// analyzeColor(prompt(`what color would you like to know about?`));
+analyzeColor(prompt(`what color would you like to know about?`));
 
 
 /* ########################################################################## */
