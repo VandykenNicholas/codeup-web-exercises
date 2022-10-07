@@ -90,7 +90,7 @@ console.log(isItTwo);
  */
 let tipAmount = 0;
 function calculateTip(percentage, total){
-    tipAmount = total * (percentage *.01);
+     tipAmount = total * (percentage *.01);
     return tipAmount;
 }
 calculateTip(20,20);
