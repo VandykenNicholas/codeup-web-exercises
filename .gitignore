@@ -1,4 +1,5 @@
 .idea/*
 *.iml
 .DS_STORE
-onMyOwn/
+onMyOwn/*
+help.html
