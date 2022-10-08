@@ -58,19 +58,19 @@
  */
 
 function analyzeColor(input){
-    switch(input){
-        case `red`:
-            console.log(`${input} is the color or fire`)
-            break;
-        case `blue`:
-            console.log(`${input} is the color of the sky`)
-            break;
-        case `green`:
-            console.log(`${input} is the color of grass`)
-            break;
-        default:
-            console.log(`${input} isnt a color i can see!`)
-    }
+	switch(input){
+		case `red`:
+			console.log(`${input} is the color or fire`)
+			break;
+		case `blue`:
+			console.log(`${input} is the color of the sky`)
+			break;
+		case `green`:
+			console.log(`${input} is the color of grass`)
+			break;
+		default:
+			console.log(`${input} isnt a color i can see!`)
+	}
 }
 /**
  * TODO:
@@ -148,31 +148,31 @@ var luckyNumber = Math.floor(Math.random() * 6);
 
 let totalInput = parseFloat(prompt(`how much is the product?`));
 function calculateTotal(luck,total){
-    let discount;
-    switch (luck){
-        case 0:
-            discount = 0;
-            break;
-        case 1:
-            discount = .1;
-            break;
-        case 2:
-            discount = .25;
-            break;
-        case 3:
-            discount = .35;
-            break;
-        case 4:
-            discount = .5;
-            break;
-        case 5:
-            discount = 1;
-            break;
-    }
-    alert(`You original bill was ${total}`);
-    alert(`Your lucky number was ${luckyNumber}`)
-    alert(`You discount is  ${discount}`);
-    alert(`you NOW will owe $${total - (total * discount)}. CONGRATULATIONS!!!`);
+	let discount;
+	switch (luck){
+		case 0:
+			discount = 0;
+			break;
+		case 1:
+			discount = .1;
+			break;
+		case 2:
+			discount = .25;
+			break;
+		case 3:
+			discount = .35;
+			break;
+		case 4:
+			discount = .5;
+			break;
+		case 5:
+			discount = 1;
+			break;
+	}
+	alert(`You original bill was ${total}`);
+	alert(`Your lucky number was ${luckyNumber}`)
+	alert(`You discount is  ${discount}`);
+	alert(`you NOW will owe $${total - (total * discount)}. CONGRATULATIONS!!!`);
 }
 calculateTotal(luckyNumber,totalInput);
 /**
@@ -194,29 +194,29 @@ calculateTotal(luckyNumber,totalInput);
  * HINT: The way we prompt for a value could be improved
  */
 function letsPlayAGame(){
-
-    let letsPlay = confirm(`Would you like to enter a number?`);
-    if (letsPlay){
-        let userNumber = parseFloat(prompt(`Enter your number here`));
-        if (!isNaN(userNumber)){
-            if (Math.abs(userNumber)%2 > 0){
-                alert(`your number was odd`);
-            }
-            else{
-
-                alert(`your number is even`);
-            }
-            alert(`your number plus 100 is ${userNumber + 100}`);
-            (userNumber < 0) ? alert(`your number is negative`) : alert(`your number is positive`);
-
-        }
-        else {
-            alert(`you did not enter a number!`);
-        }
-    }
-    else{
-
-    }
-
+	
+	let letsPlay = confirm(`Would you like to enter a number?`);
+	if (letsPlay){
+		let userNumber = parseFloat(prompt(`Enter your number here`));
+		if (!isNaN(userNumber)){
+			if (Math.abs(userNumber)%2 > 0){
+				alert(`your number was odd`);
+			}
+			else{
+				
+				alert(`your number is even`);
+			}
+			alert(`your number plus 100 is ${userNumber + 100}`);
+			(userNumber < 0) ? alert(`your number is negative`) : alert(`your number is positive`);
+			
+		}
+		else {
+			alert(`you did not enter a number!`);
+		}
+	}
+	else{
+	
+	}
+	
 }
 letsPlayAGame();
