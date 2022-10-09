@@ -152,12 +152,9 @@ Author: ${book.author.firstName} ${book.author.lastName}`);
 	function createBook(array){
 		let newBook = {};
 		newBook.title = array[0];
-		newBook.author = {firstName:`` , lastName: ``};
-		newBook.author.firstName = array[1];
-		newBook.author.lastName = array[2];
+		newBook.author = {firstName: array[1], lastName:array[2]};
 		outBook = newBook;
 	}
-	
 function showBookinfo(book){
 	console.log(`${book.title}
 Title: ${book.title}
@@ -165,5 +162,4 @@ Author: ${book.author.firstName} ${book.author.lastName}`)
 }
 showBookinfo(outBook);
 	// can not get a for loop to work on an object that doesnt have other nested
-	//also issues setting nested objects. i had to pre add the nesting as seen in line 155
 })();
