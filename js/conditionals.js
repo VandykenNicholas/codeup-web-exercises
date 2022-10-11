@@ -61,15 +61,19 @@ function analyzeColor(input){
 	switch(input){
 		case `red`:
 			console.log(`${input} is the color or fire`)
+			alert(`${input} is the color or fire`)
 			break;
 		case `blue`:
 			console.log(`${input} is the color of the sky`)
+			alert(`${input} is the color of the sky`)
 			break;
 		case `green`:
 			console.log(`${input} is the color of grass`)
+			alert(`${input} is the color of grass`)
 			break;
 		default:
 			console.log(`${input} isnt a color i can see!`)
+			alert(`${input} isnt a color i can see!`)
 	}
 }
 /**

@@ -1,0 +1,31 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Ubuntu, sans-serif;
+}
+
+body>div{
+    border: 1px solid rgba(28,110,164,0.09);
+    border-radius: 5px 5px 5px 5px;
+    padding: 10px;
+    margin: 10px;
+
+}
+.message-error{
+    background-color: rgba(234, 170, 184, 0.6);
+    color: rgb(229, 60, 92);
+}
+.message-info{
+    background-color: rgba(113, 216, 239, 0.6);
+    color: rgb(19, 194, 234);;
+}
+.message-warning{
+    background-color: rgba(238, 210, 137, 0.6);
+    color: rgb(232, 184, 63);;
+}
+.message-success{
+    background-color: rgba(118, 245, 106, 0.6);
+    color: rgb(33, 239, 16);;
+}
