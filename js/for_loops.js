@@ -1,5 +1,6 @@
 "use strict";
 
+
 function showMultiplacationTable(input){
     console.log(input * 1);
     console.log(input * 2);
@@ -28,6 +29,8 @@ function numberPyramid(){
         console.log(i.toString().repeat(i));
     }
 }
+
+
 
 function byFiveLoop(){
     for (let i = 100; i >= 5; i -= 5){
