@@ -61,7 +61,7 @@ function returnSecond(ary){
     console.log(`${ary[1]}`);
 }
 function returnThird(ary){
-    console.log(`${ary[4]}`);
+    console.log(`${ary[ary.length - 1]}`);
 }
     
     returnFirst(array);
