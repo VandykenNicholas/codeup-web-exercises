@@ -13,4 +13,76 @@ function returnPrice(obj){
 	return parseFloat(valueStr);
 	
 }
-returnPrice(meat);
+// returnPrice(meat);
+let arr = [`Green`, `Blue`, `Periwinkle`];
+
+function getLongestString(arr){
+	let large = '';
+	for(let i=0; i < arr.length; i++){
+		if(arr[i].length > large.length){
+			large = arr[i];
+		}
+	}
+	console.log(large);
+	return large;
+	//ary.forEach(string => console.log(string.length));
+}
+// getLongestString(arr);
+
+const hamsters = [
+	{
+		name: "Hamtaro",
+		heightInMM: 86,
+		fur: ['orange', 'white'],
+		gender: "male",
+		dateOfBirth: "August 6"
+	} , {
+		name: "Bijou",
+		heightInMM: 75,
+		fur: ['white'],
+		gender: "female",
+		dateOfBirth: "July 10"
+	} , {
+		name: "Oxnard",
+		heightInMM: 100,
+		fur: ['grey', 'white'],
+		gender: "male",
+		dateOfBirth: "May 3"
+	} , {
+		name: "Boss",
+		heightInMM: 120,
+		fur: ['brown', 'white'],
+		gender: "male",
+		dateOfBirth: "September 21"
+	} , {
+		name: "Snoozer",
+		heightInMM: 85,
+		fur: ['brown', 'white', "pink"],
+		gender: "male",
+		dateOfBirth: "January 14"
+	}
+];
+
+function getTallestHamster(arr){
+	// let tallest = {};
+	// let tall = 0;
+	// obj.forEach(function (hamster){
+	// 	let height = hamster.heightInMM;
+	// 	if (height > tall){
+	// 		tall = height
+	// 		tallest = hamster;
+	// 	}
+	// });
+	// console.log(tallest);
+	// return tallest;
+	let tallest = {heightInMM: 0};
+	for (let el of arr){
+		if(el.heightInMM > tallest.heightInMM){
+			tallest = el;
+		}
+	}
+	console.log(tallest);
+	
+}
+
+getTallestHamster(hamsters); // should return {name: "Boss", heightInMM: 120, fur: ['brown', 'white'], gender: "male", dateOfBirth: "September 21"};
