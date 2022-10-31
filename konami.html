@@ -36,6 +36,9 @@ const lifeUp = new Audio(`sounds/mixkit-fast-small-sweep-transition-166.wav`);
       lifeUp.play();
       alert(`YOU NOW HAVE 30 LIVES`);
       inputs = '';
+      setTimeout(function(){
+        $(`body`).removeClass(`animation`)}, 3000
+      );
     }
     console.log(event.keyCode);
     console.log(inputs);
