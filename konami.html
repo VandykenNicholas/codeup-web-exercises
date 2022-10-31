@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Konami Code</title>
+</head>
+<style>.animation{
+            animation-name: blinking;
+            animation-duration: 3s;
+                    }
+
+        @keyframes blinking {
+        0% {background-color: black;}
+        50% {background-color: green;}
+        75% {background-color: red;}
+        100% {background-color: white;}
+       }</style>
+<body>
+<h1>Konami Code</h1>
+
+<script src="js/jquery.js"></script>
+<script>
+  "use strict";
+let inputs = ""
+const lifeUp = new Audio(`sounds/mixkit-fast-small-sweep-transition-166.wav`);
+
+  // $(document).keyup(function(event){
+  //
+  //   console.log(event.keyCode);
+  // });
+
+  $(document).keyup(function(event){
+
+    inputs += event.keyCode.toString();
+    if (inputs.includes(`3838404037393739666513`)){
+      $(`body`).addClass(`animation`)
+      lifeUp.play();
+      alert(`YOU NOW HAVE 30 LIVES`);
+      inputs = '';
+    }
+    console.log(event.keyCode);
+    console.log(inputs);
+  });
+</script>
+</body>
+</html>
