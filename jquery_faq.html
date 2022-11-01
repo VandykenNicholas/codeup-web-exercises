@@ -8,13 +8,49 @@
 
   <script>
 $(document).ready(function(){
+  let midPic = $(`#mid`).children(`img`);
+  const mid = $(`#mid`)
+
+
   $(`dd`).click(function (){
     console.log(`click`);
     $(this).toggle();
   });
   $(`dt`).click(function(){
     $(this).parents(`dl`).children(`dd`).css(`display`, `block`)
+  });
+  $(`#libutton`).click(function(){
+    $(`ul`).each(function(){
+      $(this).children(`li`).last().css(`background-color`, `yellow`);
+    });
+  });
+$(`h3`).click(function(){
+  $(this).parent(`div`).children(`ul`).children(`li`).css(`font-weight`, `bold`)
+})
+
+  $(`li`).click(function(){
+    $(this).parent(`ul`).children('li').first().css(`color`, `blue`);
   })
+$(`#leftSwap,#rightSwap`).click(function(){
+  let currentPic = $(this).parent(`div`).children(`img`).attr(`src`);
+  let midPic = $(`#mid`).children(`img`).attr(`src`);
+  $(this).parent(`div`).children(`img`).attr(`src`, midPic);
+  $(`#mid`).children(`img`).attr(`src`, currentPic);
+});
+$(`#midSwap`).click(function(){
+  let currentPic = $(this).parent(`div`).children(`img`).attr(`src`);
+  let pic1 = $(`#leftSwap`).parent(`div`).children(`img`).attr(`src`);
+  let pic2 = $(`#rightSwap`).parent(`div`).children(`img`).attr(`src`);
+  let randomNumber = Math.random() * 10 + 1;
+  if (randomNumber <=5 ){
+    $(this).parent(`div`).children(`img`).attr(`src`, pic1);
+    $(`#leftSwap`).parent(`div`).children(`img`).attr(`src`, currentPic);
+  }
+  else {
+    $(this).parent(`div`).children(`img`).attr(`src`, pic2);
+    $(`#rightSwap`).parent(`div`).children(`img`).attr(`src`, currentPic);
+  }
+})
 
 
 });
@@ -23,7 +59,10 @@ $(document).ready(function(){
 </script>
 
   <style>
-
+      .classic {
+        height: 200px;
+        width: 300px;
+      }
 
 
   </style>
@@ -136,6 +175,113 @@ $(document).ready(function(){
 
     </div>
 
+  </div>
+
+<hr>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col mb-3">
+        <button type="button" class="btn btn-warning" id="libutton">Change li's</button>
+      </div>
+    </div>
+    <div class="row row-cols-4">
+      <div class="col">
+        <h3>
+          Yosemite National Park
+        </h3>
+        <ul>
+          <li>
+            Yosemite might be our nation’s 3rd national park, but it sparked the idea of national parks.
+          </li>
+          <li>
+            Yosemite’s granite rock formations glow like fire at sunset.
+          </li>
+          <li>
+            The park’s diverse landscape supports more than 400 species.
+          </li>
+          <li>
+            Yosemite is home to one of the tallest waterfalls in the world.
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>
+          Yosemite National Park
+        </h3>
+        <ul>
+          <li>
+            Yosemite might be our nation’s 3rd national park, but it sparked the idea of national parks.
+          </li>
+          <li>
+            Yosemite’s granite rock formations glow like fire at sunset.
+          </li>
+          <li>
+            The park’s diverse landscape supports more than 400 species.
+          </li>
+          <li>
+            Yosemite is home to one of the tallest waterfalls in the world.
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>
+          Yosemite National Park
+        </h3>
+        <ul>
+          <li>
+            Yosemite might be our nation’s 3rd national park, but it sparked the idea of national parks.
+          </li>
+          <li>
+            Yosemite’s granite rock formations glow like fire at sunset.
+          </li>
+          <li>
+            The park’s diverse landscape supports more than 400 species.
+          </li>
+          <li>
+            Yosemite is home to one of the tallest waterfalls in the world.
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>
+          Yosemite National Park
+        </h3>
+        <ul>
+          <li>
+            Yosemite might be our nation’s 3rd national park, but it sparked the idea of national parks.
+          </li>
+          <li>
+            Yosemite’s granite rock formations glow like fire at sunset.
+          </li>
+          <li>
+            The park’s diverse landscape supports more than 400 species.
+          </li>
+          <li>
+            Yosemite is home to one of the tallest waterfalls in the world.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row text-center">
+      <h1>Bonus</h1>
+    </div>
+    <div class="row row-cols-3 text-center">
+      <div class="col" id="left">
+        <img src="img/classic1.jpeg" class="classic" alt="none" >
+        <button type="button" class="btn btn-warning m-3" id="leftSwap">Center it</button>
+      </div>
+      <div class="col" id="mid">
+        <img src="img/classic2.jpeg" class="classic" alt="none">
+        <button type="button" class="btn btn-warning m-3" id="midSwap">Center it</button>
+      </div>
+      <div class="col" id="right">
+        <img src="img/classic3.jpeg" class="classic" alt="none" >
+        <button type="button" class="btn btn-warning m-3" id="rightSwap">Center it</button>
+      </div>
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
