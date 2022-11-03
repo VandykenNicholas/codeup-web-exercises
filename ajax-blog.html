@@ -16,8 +16,7 @@
 		(function() {
 			$.ajax("data/blog.json").done(function(data, status, jqXhr) {
 				data.forEach(function (index){
-					let outCat = index.categories.join(` `)
-					$(`#insert`).append(`<div ${mainRow} ><div class="col" id="dates" style=""><div>${index.date}</div></div><div class="col-8 border border-danger"><div class="row  text-success fs-1" style="text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00, 2px 2px 10px rgba(206,89,55,0);" id="title"><div>${index.title}</div></div><div class="row- p-2" id="content">${index.content}</div></div><div class="col" id="categories">${outCat}</div></div>`)
+					$(`#insert`).append(`<div ${mainRow} ><div class="col" id="dates" style=""><div>${index.date}</div></div><div class="col-8 border border-danger"><div class="row  text-success fs-1" style="text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00, 2px 2px 10px rgba(206,89,55,0);" id="title"><div>${index.title}</div></div><div class="row- p-2" id="content">${index.content}</div></div><div class="col" id="categories">${index.categories.join(` `)}</div></div>`)
 				})
 
 			}).fail(function(jqXhr, status, error) {

@@ -146,8 +146,7 @@ const hamsters = [
 function getAverageHeight(hamp){
 	let average = 0;
 	hamp.forEach(function(index){
-		let newHeight = index.heightInMM;
-		average += newHeight;
+		average += index.heightInMM;
 	})
 	console.log(average/(hamp.length))
 }
