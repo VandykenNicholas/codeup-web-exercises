@@ -110,3 +110,48 @@
 // }
 // fizzBuss();
 
+const hamsters = [
+	{
+		name: "Hamtaro",
+		heightInMM: 86,
+		fur: ['orange', 'white'],
+		gender: "male",
+		dateOfBirth: "August 6"
+	} , {
+		name: "Bijou",
+		heightInMM: 75,
+		fur: ['white'],
+		gender: "female",
+		dateOfBirth: "July 10"
+	} , {
+		name: "Oxnard",
+		heightInMM: 100,
+		fur: ['grey', 'white'],
+		gender: "male",
+		dateOfBirth: "May 3"
+	} , {
+		name: "Boss",
+		heightInMM: 120,
+		fur: ['brown', 'white'],
+		gender: "male",
+		dateOfBirth: "September 21"
+	} , {
+		name: "Snoozer",
+		heightInMM: 85,
+		fur: ['brown', 'white', "pink"],
+		gender: "male",
+		dateOfBirth: "January 14"
+	}
+];
+function getAverageHeight(hamp){
+	let average = 0;
+	hamp.forEach(function(index){
+		let newHeight = index.heightInMM;
+		average += newHeight;
+	})
+	console.log(average/(hamp.length))
+}
+
+
+getAverageHeight(hamsters); // should return 93.2;
+
