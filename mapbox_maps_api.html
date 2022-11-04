@@ -9,44 +9,74 @@
 	<script rel="script" src="js/jquery.js"></script>
 </head>
 <body>
-<h1>My First mapbox</h1>
-<button type="button" class="btn btn-primary" id="zoomOut">Zoom Out</button>
-<button type="button" class="btn btn-primary" id="zoomIn">Zoom In</button>
-<div id='map' style='width: 400px; height: 300px;'></div>
-<script>
-
-
-	let startingZoom = 7;
-  mapboxgl.accessToken = 'pk.eyJ1IjoidmFuZHlrZW5uaWNob2xhcyIsImEiOiJjbGExOW5kbDIwMXQ1NDFtcmJycjBxMG8yIn0.q7VgExoDOZcS3HMI1ejfbQ';
-  const map = new mapboxgl.Map({
-    container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [-84.256030, 35.797300], // starting position [lng, lat]
-    zoom: startingZoom, // starting zoom
-    projection: 'globe' // display the map as a 3D globe
-  });
-  map.on('style.load', () => {
-    map.setFog({}); // Set the default atmosphere style
-  });
-
-</script>
-  <script rel="script" src="js/mapbox-geocoder-utils.js"></script>
 
 
 <div class="container">
-	<div class="row m-3">
-		<label for="textInput" class="form-label">Address</label>
-		<input type="text" class="form-control" id="textInput">
-		<button class="btn btn-primary m-3"  id="submit">Go to address</button>
-		<button class="btn btn-primary m-3" id="markerRemove">Toggle markers</button>
+	<div class="row text-center">
+		<h1>My First mapbox</h1>
+	</div>
+	<div class="row text-center">
+		<div class="col">
+			<button type="button" class="btn btn-primary" id="zoomOut">Zoom Out</button>
+		</div>
+		<div class="col align-self-center">
+			<button type="button" class="btn btn-primary" id="zoomIn">Zoom In</button>
+		</div>
+		<div class="col">
+			<button class="btn btn-primary" id="markerRemove">Toggle markers</button>
+		</div>
+	</div>
+</div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col">
+				<div class="mt-2 " id='map' style='min-width: 400px; min-height: 300px;'></div>
+			</div>
+		</div>
+
+	</div>
+
+<div class="container ">
+	<div class="row justify-content-center">
+		<div class="row ">
+			<div class="col text-center">
+				<label for="textInput" class="form-label">Address</label>
+				<input type="text" class="form-control " id="textInput">
+			</div>
+
+		</div>
+		<div class="row mt-3 ">
+			<div class="col text-center">
+				<button class="btn btn-primary" id="submit">Go to address</button>
+			</div>
+
+		</div>
 	</div>
 </div>
 
 
+
 <script>
 
 
-	const myToken = 'pk.eyJ1IjoidmFuZHlrZW5uaWNob2xhcyIsImEiOiJjbGExOW5kbDIwMXQ1NDFtcmJycjBxMG8yIn0.q7VgExoDOZcS3HMI1ejfbQ';
+</script>
+  <script rel="script" src="js/mapbox-geocoder-utils.js"></script>
+<script rel="script" src="js/keys.js"></script>
+<script>
+	let startingZoom = 7;
+	mapboxgl.accessToken = mapboxToken;
+	const map = new mapboxgl.Map({
+		container: 'map', // container ID
+		style: 'mapbox://styles/mapbox/streets-v11', // style URL
+		center: [-84.256030, 35.797300], // starting position [lng, lat]
+		zoom: startingZoom, // starting zoom
+		projection: 'globe' // display the map as a 3D globe
+	});
+	map.on('style.load', () => {
+		map.setFog({}); // Set the default atmosphere style
+	});
+
+	const myToken = mapboxToken;
 
 	let markersArry =[];
 	let markerStatus = true;
@@ -82,7 +112,6 @@
 		map.setZoom(startingZoom += 2);
 	});
 	$(`#submit`).click(function(){
-		console.log(`button pressed`);
 		let input = $(`#textInput`).val();
 		// console.log(typeof input);
 		geocode(input,myToken).then(function(result){
@@ -99,11 +128,18 @@
 			});
 		}
 		else {
-			console.log(`false fired`);
 			setMarkers(addresses);
 			markerStatus = true;
 		}
 	});
+	$(document).keyup(function(event){
+		if (event.keyCode === 13) {let input = $(`#textInput`).val();
+			// console.log(typeof input);
+			geocode(input,myToken).then(function(result){
+				map.jumpTo({center: result});
+				map.setZoom(17);
+			});
+		}});
 
 
 </script>
