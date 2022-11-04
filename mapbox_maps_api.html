@@ -31,44 +31,83 @@
 
 </script>
   <script rel="script" src="js/mapbox-geocoder-utils.js"></script>
+
+
+<div class="container">
+	<div class="row m-3">
+		<label for="textInput" class="form-label">Address</label>
+		<input type="text" class="form-control" id="textInput">
+		<button class="btn btn-primary m-3"  id="submit">Go to address</button>
+		<button class="btn btn-primary m-3" id="markerRemove">Toggle markers</button>
+	</div>
+</div>
+
+
 <script>
 
 
-    const myToken = 'pk.eyJ1IjoidmFuZHlrZW5uaWNob2xhcyIsImEiOiJjbGExOW5kbDIwMXQ1NDFtcmJycjBxMG8yIn0.q7VgExoDOZcS3HMI1ejfbQ';
+	const myToken = 'pk.eyJ1IjoidmFuZHlrZW5uaWNob2xhcyIsImEiOiJjbGExOW5kbDIwMXQ1NDFtcmJycjBxMG8yIn0.q7VgExoDOZcS3HMI1ejfbQ';
 
-
+	let markersArry =[];
+	let markerStatus = true;
 	let addresses = [{
 		address: `411 Sweetwater Vonore Rd, Sweetwater, TN 37874`,
 		popup : "<div class=\"container\" ><div class=\"row\"><div class=\"con text-center\">picture</div><div class=\"row align-items-center text-center\"><div class=\"col\">price</div><div class=\"col\"><button class=\"btn btn-primary btn-sm\">Web</button></div></div></div></div>"
-		},
+	},
 		{
 			address: `7531 Barnett Way, Powell, TN 37849`,
 			popup: "<p></p><p>Best burgers chain near town!</p>"
 
 		}];
-	addresses.forEach(function(index){
+	function setMarkers(object){
+		object.forEach(function(index){
 			geocode(index.address,myToken).then(function(result) {
-			let marker = new mapboxgl.Marker()
-				.setLngLat(result)
-				.addTo(map);
-			let popup = new mapboxgl.Popup()
-				.setLngLat(result)
-				.setHTML(index.popup)
+				let marker = new mapboxgl.Marker()
+					.setLngLat(result)
+					.addTo(map);
+				markersArry.push(marker);
+				let popup = new mapboxgl.Popup()
+					.setLngLat(result)
+					.setHTML(index.popup)
 				marker.setPopup(popup);
+			});
 		});
-	});
-</script>
-<script>
+	}
+
+	setMarkers(addresses);
 	$(`#zoomOut`).click(function(){
 		map.setZoom(startingZoom -= 2);
 	});
 	$(`#zoomIn`).click(function(){
 		map.setZoom(startingZoom += 2);
 	});
+	$(`#submit`).click(function(){
+		console.log(`button pressed`);
+		let input = $(`#textInput`).val();
+		// console.log(typeof input);
+		geocode(input,myToken).then(function(result){
+			map.jumpTo({center: result});
+			map.setZoom(17);
+		});
+	});
+	$(`#markerRemove`).click(function(){
+		if (markerStatus){
+			markersArry.forEach(function(index){
+					index.remove();
+					markersArry=[];
+					markerStatus = false;
+			});
+		}
+		else {
+			console.log(`false fired`);
+			setMarkers(addresses);
+			markerStatus = true;
+		}
+	});
+
 
 </script>
 <script rel="script" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-
 
 </body>
 </html>
