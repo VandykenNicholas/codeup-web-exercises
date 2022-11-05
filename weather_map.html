@@ -10,17 +10,66 @@
 
 </head>
 <body>
+<div class="container">
+	<div class="row">
+		<h1>Your local weather</h1>
+	</div>
+	<div class="row">
+<!--		current weather-->
+	</div>
+	<div class="row" id="insert">
+
+	</div>
+</div>
 </body>
 <script>
-	$.get("http://api.openweathermap.org/data/2.5/weather", {
+
+	let print = [];
+	let area = ``;
+	$.get("http://api.openweathermap.org/data/2.5/forecast?", {
 		APPID: weatherMapKey,
-		q:     "San Antonio, US",
+		q:     "City of Salem, US",
 		units: 'imperial'
+		// mode: `html`
 	}).done(function (data){
-		console.log(data)
+		let day = 0;
+		for (let i=0; i < data.list.length; i++){
+			if (data.list[i].dt_txt.includes(`00:00:00`) ||  data.list[i].dt_txt.includes(`06:00:00`) || data.list[i].dt_txt.includes(`12:00:00`) || data.list[i].dt_txt.includes(`18:00:00`)){
+				if (data.list[i].dt_txt.includes(`00:00:00`)){
+					day ++;
+				}
+				else {
+					let weather = {};
+					weather.day = day;
+					weather.temp = data.list[i].main.temp;
+					 let sub = data.list[i].dt_txt.split(` `);
+					weather.time = sub[1];
+					print.push(weather);
+				}
+			}
+		}
+		console.log(print);
+			///////////////// end of done ////////
+
+		let currentDay = -1;
+		let col=0;
+		console.log(print);
+		print.forEach(function(el){
+			console.log(`started`)
+			if (el.day !== currentDay){
+				currentDay = el.day;
+				col ++;
+				$(`#insert`).append(`<div class="col" id="${col}"></div>`)
+			}
+			$(`#${col}`).append(`<div class="col">${el.time}</div>`);
+			$(`#${col}`).append(`<div class="col">${el.temp}</div>`);
+		});
+		console.log(`ended`);
+
+//#TODO :: look at example and get what you need, we now can get what we want
+
 	});
 
-	// https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
