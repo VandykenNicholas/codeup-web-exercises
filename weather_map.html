@@ -25,50 +25,64 @@
 <script>
 
 	let print = [];
-	let area = ``;
 	$.get("http://api.openweathermap.org/data/2.5/forecast?", {
 		APPID: weatherMapKey,
 		q:     "City of Salem, US",
 		units: 'imperial'
-		// mode: `html`
-	}).done(function (data){
-		let day = 0;
-		for (let i=0; i < data.list.length; i++){
-			if (data.list[i].dt_txt.includes(`00:00:00`) ||  data.list[i].dt_txt.includes(`06:00:00`) || data.list[i].dt_txt.includes(`12:00:00`) || data.list[i].dt_txt.includes(`18:00:00`)){
-				if (data.list[i].dt_txt.includes(`00:00:00`)){
-					day ++;
+	}).done(function (data) {
+		let maxTemp = 0;
+		let lowTemp = 0;
+		let date = ``;
+		let periodsOfRain = [];
+		let weather = {};
+		let tempTime = ``;
+		console.log(data)
+		for (let i = 0; i < data.list.length; i++) {
+			console.log(data.list[i].weather[0].main)
+			let temp = data.list[i].dt_txt.split(` `);
+			let dateCompare = temp[0];
+			if (i === 0) {
+				date = dateCompare;
+				console.log(date);
+				maxTemp = data.list[i].main.temp_max;
+				lowTemp = data.list[i].main.temp_min;
+			}
+			if (dateCompare !== date || i === (data.list.length-1) ) {
+				weather.date = date;
+				weather.max = maxTemp;
+				weather.low = lowTemp;
+				weather.rainPeriods = periodsOfRain;
+				print.push(weather);
+				weather = {};
+				date = dateCompare;
+				maxTemp = data.list[i].main.temp_max;
+				lowTemp = data.list[i].main.temp_min;
+				periodsOfRain = [];
+			}
+			else {
+				if(data.list[i].main.temp_max > maxTemp){
+					maxTemp = data.list[i].main.temp_max;
 				}
-				else {
-					let weather = {};
-					weather.day = day;
-					weather.temp = data.list[i].main.temp;
-					 let sub = data.list[i].dt_txt.split(` `);
-					weather.time = sub[1];
-					print.push(weather);
+				if(data.list[i].main.temp_min < lowTemp){
+					lowTemp = data.list[i].main.temp_min;
+				}
+				if (data.list[i].weather[0].main.includes(`Rain`)){
+					console.log(`started rain push`);
+					 tempTime = data.list[i].dt_txt.split(` `);
+					 console.log(tempTime);
+					periodsOfRain.push(tempTime[1]);
 				}
 			}
 		}
 		console.log(print);
-			///////////////// end of done ////////
+	});
 
-		let currentDay = -1;
-		let col=0;
-		console.log(print);
-		print.forEach(function(el){
-			console.log(`started`)
-			if (el.day !== currentDay){
-				currentDay = el.day;
-				col ++;
-				$(`#insert`).append(`<div class="col" id="${col}"></div>`)
-			}
-			$(`#${col}`).append(`<div class="col">${el.time}</div>`);
-			$(`#${col}`).append(`<div class="col">${el.temp}</div>`);
-		});
-		console.log(`ended`);
+
+
 
 //#TODO :: look at example and get what you need, we now can get what we want
 
-	});
+
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
