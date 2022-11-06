@@ -36,14 +36,11 @@
 		let periodsOfRain = [];
 		let weather = {};
 		let tempTime = ``;
-		console.log(data)
 		for (let i = 0; i < data.list.length; i++) {
-			console.log(data.list[i].weather[0].main)
 			let temp = data.list[i].dt_txt.split(` `);
 			let dateCompare = temp[0];
 			if (i === 0) {
 				date = dateCompare;
-				console.log(date);
 				maxTemp = data.list[i].main.temp_max;
 				lowTemp = data.list[i].main.temp_min;
 			}
@@ -67,9 +64,7 @@
 					lowTemp = data.list[i].main.temp_min;
 				}
 				if (data.list[i].weather[0].main.includes(`Rain`)){
-					console.log(`started rain push`);
 					 tempTime = data.list[i].dt_txt.split(` `);
-					 console.log(tempTime);
 					periodsOfRain.push(tempTime[1]);
 				}
 			}
