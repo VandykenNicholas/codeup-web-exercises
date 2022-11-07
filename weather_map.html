@@ -76,6 +76,11 @@
 	const myToken = mapboxToken;
 
 	let markersArry =[];
+
+
+	let currentMarker = {};
+
+
 	function getCenter(){
 		let center = map.getCenter();
 		geocode(center,myToken).then(function() {
@@ -83,13 +88,14 @@
 				.setLngLat(center)
 				.addTo(map)
 				.setDraggable(true)
-			markersArry.push(marker);
+				currentMarker = marker;
+				markersArry.push(marker);
 	});
+		return center;
 	}
 
 	$(`#center`).click(function(){
-		getCenter();
-		getWeather();
+		getWeather(getCenter());
 	})
 
 	$(`#zoomOut`).click(function(){
@@ -100,7 +106,6 @@
 	});
 	$(`#submit`).click(function(){
 		let input = $(`#textInput`).val();
-		// console.log(typeof input);
 		geocode(input,myToken).then(function(result){
 			map.jumpTo({center: result});
 			map.setZoom(17);
@@ -115,24 +120,17 @@
 	);
 	$(document).keyup(function(event){
 		if (event.keyCode === 13) {let input = $(`#textInput`).val();
-			// console.log(typeof input);
 			geocode(input,myToken).then(function(result){
 				map.jumpTo({center: result});
 				map.setZoom(17);
 			});
 		}});
-	/// add button to place marker at center of camera
-//// Place marker on center
-	/////make dragable
-	/////// after grab coordinates at marker
-	///////// update weather
 
 </script>
 <script id="WEATHER">
 
-	function getWeather(){
+	function getWeather(center){
 		let weather = {};
-		let center = map.getCenter();
 		$.get("http://api.openweathermap.org/geo/1.0/reverse?", {
 			APPID: weatherMapKey,
 				lat:    center.lat,
