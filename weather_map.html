@@ -134,19 +134,18 @@
 </script>
 <script id="WEATHER">
 function getArea(center){
-	let area = [];
 		$.get("http://api.openweathermap.org/geo/1.0/reverse?", {
 			APPID: weatherMapKey,
 			lat: center.lat,
 			lon: center.lng,
 		}).done(function (data) {
-			area.push(`${data[0].name}, ${data[0].state}`);
+			console.log(data);
+			$(`#weatherInput`).append(`${data[0].name}, ${data[0].state}`);
 		})
-		return area;
+
 }
 	function getWeather(center){
 		let weather = {};
-		let print = [];
 		$.get("http://api.openweathermap.org/data/2.5/forecast?", {
 			APPID: weatherMapKey,
 			lat:    center.lat,
@@ -170,7 +169,7 @@ function getArea(center){
 					lowTemp = data.list[i].main.temp_min;
 				}
 				if (dateCompare !== date || i === (data.list.length-1) ) {
-					weather.place = getArea(center);
+
 					weather.date = date;
 					weather.max = maxTemp;
 					weather.low = lowTemp;
@@ -190,7 +189,9 @@ function getArea(center){
 					else {
 						weather.main = word;
 					}
-					print.push(weather);
+
+					$(`#weatherInput`).append(`<div class="row"><div class="col"><div class="row"><div>${weather.date}</div></div><div class="row"><div>${weather.max} / ${weather.low}</div></div><div class="row"><div>${weather.main}</div></div></div></div>`)
+
 					weather = {};
 					date = dateCompare;
 					maxTemp = data.list[i].main.temp_max;
@@ -229,28 +230,7 @@ function getArea(center){
 					mainWordCounter[5] ++;
 				}
 			}
-			// console.log(print);
 		});
-		// console.log(print);
-		placeWeather(print);
-	}
-	function placeWeather(data) {
-		console.log(typeof data)
-		console.dir(data);
-		console.log(data)
-
-		console.log(`started`);
-		// for (let i = 0; i < data[0].length; i++) {
-		// 	console.log(`loop`);
-		// 	let date = data[i].date;
-		// 	let place = data[i].place[0];
-		// 	let low = data[i].low;
-		// 	let high = data[i].max;
-		// 	let rainArray = data[i].rainPeriods;
-		// 	let main = data[0].main;
-		// 	$(`#weatherInput`).append(`<div class="row"><div class="col"><div class="row"><div>${date}</div></div><div class="row"><div>${place}</div></div><div class="row"><div>${high} / ${low}</div></div><div class="row"><div>${main}</div></div></div></div>`)
-		// }
-		console.log(`ended`);
 	}
 
 
