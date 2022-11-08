@@ -173,7 +173,7 @@ function getArea(center){
 				}
 				if (dateCompare !== date || i === (data.list.length-1) ) {
 
-					weather.date = date;
+					weather.date = date.slice(5);
 					weather.max = maxTemp;
 					weather.low = lowTemp;
 					weather.rainPeriods = periodsOfRain;
