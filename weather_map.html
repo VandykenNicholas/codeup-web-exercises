@@ -90,7 +90,6 @@
 			let marker = new mapboxgl.Marker()
 				.setLngLat(center)
 				.addTo(map)
-				.setDraggable(true)
 				currentMarker = marker;
 				markersArry.push(marker);
 	});
@@ -143,7 +142,7 @@ function getArea(center){
 			lon: center.lng,
 		}).done(function (data) {
 			console.log(data);
-			$(`#weatherInput`).append(`<div class="row  mt-2" id="${rorCount}"><div class=" col text-center g-2 border bg-info m-auto">${data[0].name}, ${data[0].state}</div></div>`);
+			$(`#weatherInput`).append(`<div class="row  mt-2" id="${rorCount}"><div class=" col text-center text-wrap border bg-info m-1 p-1 align-self-center" style="max-width: 75px; font-size: 10px">${data[0].name}, ${data[0].state}</div></div>`);
 		})
 
 }
@@ -161,7 +160,6 @@ function getArea(center){
 			let periodsOfRain = [];
 			let mainWordCounter = [0,0,0,0,0,0];
 			let mainWordArr = [`Clear`,`Cloud`,`Snow`,`Rain`,`Drizzle`,`Thunderstorms`]
-
 			let tempTime = ``;
 			for (let i = 0; i < data.list.length; i++) {
 				let temp = data.list[i].dt_txt.split(` `);
