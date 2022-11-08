@@ -59,7 +59,7 @@
 </div>
 <div class="container" id="weatherInput">
 
-</div>
+	</div>
 </body>
 <script rel="script" src="js/mapbox-geocoder-utils.js"></script>
 <script id="MAPBOX">
@@ -99,7 +99,7 @@
 
 	$(`#PlaceCenter`).click(function(){
 
-		let weather = getWeather(getCenter());
+		getWeather(getCenter());
 		getArea(getCenter());
 	})
 
@@ -120,6 +120,8 @@
 				markersArry.forEach(function(index) {
 					index.remove();
 					markersArry = [];
+					$( "#weatherInput" ).replaceWith( `<div class="container" id="weatherInput"></div>` );
+					rorCount = 0;
 				});
 	}
 	);
@@ -133,6 +135,7 @@
 
 </script>
 <script id="WEATHER">
+	let rorCount = 0;
 function getArea(center){
 		$.get("http://api.openweathermap.org/geo/1.0/reverse?", {
 			APPID: weatherMapKey,
@@ -140,7 +143,7 @@ function getArea(center){
 			lon: center.lng,
 		}).done(function (data) {
 			console.log(data);
-			$(`#weatherInput`).append(`${data[0].name}, ${data[0].state}`);
+			$(`#weatherInput`).append(`<div class="row" id="${rorCount}">${data[0].name}, ${data[0].state}</div>`);
 		})
 
 }
@@ -190,7 +193,17 @@ function getArea(center){
 						weather.main = word;
 					}
 
-					$(`#weatherInput`).append(`<div class="row"><div class="col"><div class="row"><div>${weather.date}</div></div><div class="row"><div>${weather.max} / ${weather.low}</div></div><div class="row"><div>${weather.main}</div></div></div></div>`)
+					$(`#${rorCount}`).append(`<div class="col">
+<div class="row">
+<div>${weather.date}</div>
+</div>
+<div class="row">
+<div>${weather.max} / ${weather.low}</div>
+</div>
+<div class="row">
+<div>${weather.main}</div>
+</div>
+</div>`)
 
 					weather = {};
 					date = dateCompare;
@@ -230,6 +243,8 @@ function getArea(center){
 					mainWordCounter[5] ++;
 				}
 			}
+			$(`#weatherInput`).append(`</div></div>`)
+			rorCount++;
 		});
 	}
 
