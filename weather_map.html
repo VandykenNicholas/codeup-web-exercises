@@ -184,7 +184,7 @@ function getArea(center){
 					else if (index === 1 || index === 3){
 						word = word + `y`
 					}
-					if (mainWordCounter[3] >= 2){
+					if (mainWordCounter[3] >= 2 && !mainWordArr[3] && !mainWordArr[4] && !mainWordArr[5]){
 						weather.main = word + ` with periods of rain`;
 					}
 					else {
