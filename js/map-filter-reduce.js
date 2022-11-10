@@ -81,7 +81,40 @@ const language = users => {
 		}
 	}, []);
 };
-console.log(language(users));
+// console.log(language(users));
+
+let weather = [
+	{high: `32`,
+	main: `rainy`},
+	{high: `32`,
+	main: `cloudy`},
+	{high: `32`,
+		main: `cloudy`},
+	{high: `32`,
+		main: `cloudy`},
+	{high: `32`,
+		main: `rainy`},
+	{high: `32`,
+		main: `cloudy`},
+	{high: `32`,
+		main: `rainy`}];
+
+
+let map = weather.map(m => m.main);
+let result = map.reduce((weatherKey, weather) =>{
+	if (typeof weatherKey[weather] === `undefined`){
+		weatherKey[weather] = 1;
+	}
+	else {
+		weatherKey[weather] += 1
+	}
+	return weatherKey;
+},[])
+let values = Object.values(result);
+let index = values.indexOf(Math.max(...values));
+let final = Object.keys(result)[index];
+console.log(final);
+
 
 
 
